@@ -32,7 +32,57 @@ public class Job {
 
     @Override
     public String toString() {
-        return "\nID: ${this.id}\nName: ${this.name}\nEmployer: ${this.employer}\nLocation: ${this.location}\nPosition Type: ${this.positionType}\nCore Competency: ${this.coreCompetency}\n";
+        String aName;
+        String anEmployer;
+        String aLocation;
+        String aPositionType;
+        String aCoreCompetency;
+        boolean nameBlank;
+        boolean employerBlank;
+        boolean locationBlank;
+        boolean positionBlank;
+        boolean coreBlank;
+
+        if (this.name == "" || this.name == " " || this.name == null) {
+            aName = "Data not available";
+            nameBlank = true;
+        } else {
+            aName = this.name;
+            nameBlank = false;
+        }
+        if (this.employer.toString() == "" || this.employer.toString() == " " || this.employer.toString() == null) {
+            anEmployer = "Data not available";
+            employerBlank = true;
+        } else {
+            anEmployer = this.employer.toString();
+            employerBlank = false;
+        }
+        if (this.location.toString() == "" || this.location.toString() == " " || this.location.toString() == null) {
+            aLocation = "Data not available";
+            locationBlank = true;
+        } else {
+            aLocation = this.location.toString();
+            locationBlank = false;
+        }
+        if (this.positionType.toString() == "" || this.positionType.toString() == " " || this.positionType.toString() == null) {
+            aPositionType = "Data not available";
+            positionBlank = true;
+        } else {
+            aPositionType = this.positionType.toString();
+            positionBlank = false;
+        }
+        if (this.coreCompetency.toString() == "" || this.coreCompetency.toString() == " " || this.coreCompetency.toString() == null) {
+            aCoreCompetency = "Data not available";
+            coreBlank = true;
+        } else {
+            aCoreCompetency = this.coreCompetency.toString();
+            coreBlank = false;
+        }
+        if ((nameBlank == true) && (employerBlank == true) && (locationBlank == true) && (positionBlank ==true) && (coreBlank == true)) {
+            return "\nOOPS! This job does not seem to exist.\n";
+        } else {
+            return "\nID: "+this.id+"\nName: "+aName+"\nEmployer: "+anEmployer+"\nLocation: "+aLocation+"\nPosition Type: "+aPositionType+"\nCore Competency: "+aCoreCompetency+"\n";
+        }
     }
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields

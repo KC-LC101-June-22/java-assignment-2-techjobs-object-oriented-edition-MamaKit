@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -53,7 +55,23 @@ public class JobTest {
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
         Job test = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-
+        assertEquals(test.toString(),"\nID: "+test.getId()+"\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
     }
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job test1 = new Job(" ", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job test2 = new Job("", new Employer(" "), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job test3 = new Job("", new Employer(""), new Location(" "), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job test4 = new Job("", new Employer(""), new Location(""), new PositionType(" "), new CoreCompetency("Persistence"));
+        Job test5 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(" "));
+        Job test6 = new Job(null, new Employer(), new Location(), new PositionType(), new CoreCompetency());
+        assertEquals(test1.toString(),"\nID: "+test1.getId()+"\nName: Data not available\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+        assertEquals(test2.toString(),"\nID: "+test2.getId()+"\nName: Data not available\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+        assertEquals(test3.toString(),"\nID: "+test3.getId()+"\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Quality control\nCore Competency: Persistence\n");
+        assertEquals(test4.toString(),"\nID: "+test4.getId()+"\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Persistence\n");
+        assertEquals(test5.toString(),"\nOOPS! This job does not seem to exist.\n");
+        assertEquals(test6.toString(),"\nOOPS! This job does not seem to exist.\n");
+    }
+
 
 }
