@@ -29,6 +29,12 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
+
+    @Override
+    public String toString() {
+        return "\nID: ${this.id}\nName: ${this.name}\nEmployer: ${this.employer}\nLocation: ${this.location}\nPosition Type: ${this.positionType}\nCore Competency: ${this.coreCompetency}\n";
+    }
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
